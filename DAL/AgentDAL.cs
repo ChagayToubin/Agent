@@ -39,10 +39,16 @@ namespace agegent.DAL
             string query = $" INSERT INTO agents (codeName, realName, location, status, missionsCompleted)" +
         $"VALUES('{agent.codeName}','{agent.realName}','{agent.loction}', '{agent.status}', '{agent.missionsCompletad}')";
 
+            try
+            {
+                new MySqlCommand(query, conn).ExecuteReader();
+                conn.Close();
+            }
+            catch(Exception ex )
+            {
+                Console.WriteLine(ex.Message);
 
-            new MySqlCommand(query, conn).ExecuteReader();
-            conn.Close();
-
+            }
         }
         public List<Agent> GetAllAgents()
         {
@@ -74,10 +80,11 @@ namespace agegent.DAL
                 return list;
 
             }
-            catch
+            catch(Exception ex)
             {
-                Console.WriteLine("!@#$%^&*(*&^%$#@");
-                throw;
+                //Console.WriteLine("!@#$%^&*(*&^%$#@");
+                throw new Exception(ex.Message);
+
             }
 
 
@@ -92,10 +99,9 @@ namespace agegent.DAL
             {
                 new MySqlCommand(quary, _conn).ExecuteReader();
             }
-            catch
+            catch(Exception ex)
             {
-                Console.WriteLine("in update stack");
-                throw;
+                Console.WriteLine(ex.Message);
             }
             _conn.Close();
 
@@ -116,22 +122,30 @@ namespace agegent.DAL
            
             Dictionary<string, int> dic = new Dictionary<string, int>();
             List<Agent> list = new List<Agent>();
-            list = GetAllAgents();
-            foreach (var item in list)
+            try
             {
-                string key = item.status;
-                if (dic.ContainsKey(key))
+                list = GetAllAgents();
+                foreach (var item in list)
                 {
-                    dic[key] += 1;
+                    string key = item.status;
+                    if (dic.ContainsKey(key))
+                    {
+                        dic[key] += 1;
+
+                    }
+                    else
+                    {
+                        dic[key] = 1;
+                    }
 
                 }
-                else
-                {
-                    dic[key] = 1;
-                }
+                return dic;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
 
             }
-            return dic;
         }
 
 

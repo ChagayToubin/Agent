@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("agegent")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+daff7131694ae7872c4b7208795ff4eeb14117d2")]
 [assembly: System.Reflection.AssemblyProductAttribute("agegent")]
 [assembly: System.Reflection.AssemblyTitleAttribute("agegent")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
